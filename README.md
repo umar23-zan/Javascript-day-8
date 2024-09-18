@@ -172,3 +172,110 @@ if (newQuantity < 0 || newQuantity >= 1000) {
       container.classList.remove('is-editing-quantity');
 
 ```
+## External Libraries
+
+15a. Using DayJS, get the date 5 days after today and display it in the format: '<Month> <Day of Month>'
+```
+ <script type="module">
+      import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+      const today = dayjs();
+      const date = today.add(5, 'days');
+      console.log(date.format('MMMM D'));
+```
+15b. Calculate 1 month after today and display in the same format as 15a.
+```
+<script type="module">
+      import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+      const today = dayjs();
+      const date = today.add(1, 'month');
+      console.log(date.format('MMMM D'));
+    </script>
+```
+15c. DayJS has a subtract(...) method which subtracts time from a date. Calculate 1 month before today and display in same format as 15a.
+```
+ <script type="module">
+      import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+      const today = dayjs();
+      const date = today.subtract(1, 'month');
+      console.log(date.format('MMMM D'));
+    </script>
+```
+15d. Get a date from DayJS and display it in this format: '<Day of Week>' (The format should be 'Monday', 'Tuesday', etc.)
+```
+ <script type="module">
+      import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+      const date = dayjs();
+      console.log(date.format('dddd'));
+    </script>
+```
+15e. Create a function isWeekend(date) that takes a DayJS object, and returns whether the date is 'Saturday' or 'Sunday' (hint: use solution from 15d). Test this function with a few different dates.
+```
+<script type="module">
+  import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+  function isWeekend(date) {
+    const dayOfWeek = date.format('dddd');
+    return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
+  }
+  let date = dayjs();
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+
+  date = dayjs().add(2, 'day');
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+
+  date = dayjs().add(4, 'day');
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+
+  date = dayjs().add(6, 'day');
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+</script>
+```
+15f. Move isWeekend() into a separate file and use export default. Import this function in another file and run it.
+```
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+  import isWeekend from './15f.js'
+
+  let date = dayjs();
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+
+  date = dayjs().add(2, 'day');
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+
+  date = dayjs().add(4, 'day');
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+
+  date = dayjs().add(6, 'day');
+  console.log(date.format('dddd, MMMM D'));
+  console.log(isWeekend(date));
+```
+15g. We can also rename a default export when we import. In 15f, when we "import isWeekend", change the name to something else like "Import isSatSun" and use this new name to run the function.
+```
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+      import isSatSun from './15f.js'
+      let date = dayjs();
+      console.log(date.format('dddd, MMMM D'));
+      console.log(isSatSun(date));
+
+      date = dayjs().add(2, 'day');
+      console.log(date.format('dddd, MMMM D'));
+      console.log(isSatSun(date));
+
+      date = dayjs().add(4, 'day');
+      console.log(date.format('dddd, MMMM D'));
+      console.log(isSatSun(date));
+
+      date = dayjs().add(6, 'day');
+      console.log(date.format('dddd, MMMM D'));
+      console.log(isSatSun(date));
+```
